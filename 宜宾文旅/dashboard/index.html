@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宜宾市各区县财政与文旅数据分析看板</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;
+  background:#f5f7fa;color:#333;line-height:1.6
+}
+.header{
+  background:linear-gradient(135deg,#1a5276 0%,#2980b9 100%);
+  color:white;padding:40px 20px;text-align:center
+}
+.header h1{font-size:2.2em;margin-bottom:10px}
+.header p{opacity:.9;font-size:1.05em}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.kpi-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0
+}
+.kpi-card{
+  background:white;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06);
+  text-align:center;transition:transform .2s
+}
+.kpi-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.kpi-value{font-size:2em;font-weight:700;color:#1a5276;margin:8px 0}
+.kpi-label{color:#666;font-size:.95em}
+.kpi-change{font-size:.85em;margin-top:4px}
+.kpi-change.up{color:#27ae60}
+.kpi-change.down{color:#e74c3c}
+.section{
+  background:white;border-radius:12px;padding:28px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.section-title{
+  font-size:1.4em;font-weight:600;color:#1a5276;margin-bottom:20px;
+  padding-bottom:12px;border-bottom:2px solid #e8f0f8
+}
+.chart-container{width:100%;height:420px;margin:16px 0}
+.chart-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:20px
+}
+.chart-grid .section{margin:0}
+.data-table{
+  width:100%;border-collapse:collapse;margin-top:12px;font-size:.95em
+}
+.data-table th,.data-table td{
+  padding:12px 16px;text-align:left;border-bottom:1px solid #eee
+}
+.data-table th{
+  background:#f8f9fa;font-weight:600;color:#555;position:sticky;top:0
+}
+.data-table tr:hover{background:#f8f9fa}
+.data-table td.num{text-align:right;font-family:monospace}
+.badge{
+  display:inline-block;padding:2px 10px;border-radius:12px;font-size:.8em;font-weight:500
+}
+.badge-primary{background:#e8f0f8;color:#1a5276}
+.badge-success{background:#e8f8f0;color:#27ae60}
+.badge-warning{background:#fff8e8;color:#f39c12}
+.tabs{
+  display:flex;gap:8px;margin-bottom:20px;border-bottom:2px solid #eee;padding-bottom:8px
+}
+.tab{
+  padding:8px 20px;border-radius:6px;cursor:pointer;font-weight:500;
+  transition:all .2s;border:none;background:transparent;color:#666
+}
+.tab:hover{background:#f0f0f0}
+.tab.active{background:#1a5276;color:white}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.footer{
+  text-align:center;padding:40px 20px;color:#999;font-size:.9em
+}
+.scenic-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px
+}
+.scenic-card{
+  background:linear-gradient(135deg,#f8f9fa 0%,#fff 100%);
+  border:1px solid #e8e8e8;border-radius:10px;padding:20px;transition:all .2s
+}
+.scenic-card:hover{border-color:#2980b9;box-shadow:0 4px 12px rgba(41,128,185,.1)}
+.scenic-name{font-weight:600;color:#1a5276;font-size:1.1em}
+.scenic-meta{color:#888;font-size:.9em;margin-top:6px}
+@media(max-width:768px){
+  .header h1{font-size:1.5em}
+  .chart-grid{grid-template-columns:1fr}
+  .chart-container{height:320px}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>宜宾市各区县财政与文旅数据分析看板</h1>
+  <p>基于 2021-2025 年公开政府统计数据 | 数据驱动决策</p>
+</div>
+
+<div class="container">
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">2024年全市GDP</div>
+      <div class="kpi-value">4005.8<span style="font-size:.5em">亿元</span></div>
+      <div class="kpi-change up">四川省第3位</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">2024年财政收入</div>
+      <div class="kpi-value">324.3<span style="font-size:.5em">亿元</span></div>
+      <div class="kpi-change up">全省第2位 · 增长3.3%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">2024年接待游客</div>
+      <div class="kpi-value">9738<span style="font-size:.5em">万人次</span></div>
+      <div class="kpi-change up">旅游收入 898亿元</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">A级景区数量</div>
+      <div class="kpi-value">55<span style="font-size:.5em">家</span></div>
+      <div class="kpi-change up">含6家4A级景区</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">全市GDP发展趋势（2020-2024）</div>
+    <div id="chart-city-gdp" class="chart-container"></div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="section">
+      <div class="section-title">2024年各区县GDP排名</div>
+      <div id="chart-gdp-2024" class="chart-container"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">2024年各区县财政收入排名</div>
+      <div id="chart-fiscal-2024" class="chart-container"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">各区县GDP变化趋势（2020-2024）</div>
+    <div id="chart-gdp-trend" class="chart-container"></div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="section">
+      <div class="section-title">2024年财政自给率（收入/2023年支出）</div>
+      <div id="chart-self-ratio" class="chart-container"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">2024年人均GDP估算（元/人）</div>
+      <div id="chart-pc-gdp" class="chart-container"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">全市财政收入与支出趋势</div>
+    <div id="chart-city-fiscal" class="chart-container"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">交互式数据总表</div>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(event,'tab-gdp')">GDP数据</button>
+      <button class="tab" onclick="switchTab(event,'tab-fiscal')">财政数据</button>
+      <button class="tab" onclick="switchTab(event,'tab-tourism')">文旅资源</button>
+    </div>
+    <div id="tab-gdp" class="tab-content active">
+      <table class="data-table">
+        <thead><tr><th>区县</th><th>2020年GDP(亿元)</th><th>2021年GDP(亿元)</th><th>2023年GDP(亿元)</th><th>2024年GDP(亿元)</th><th>2024年增速</th><th>人口(万人)</th></tr></thead>
+        <tbody>
+<tr><td><strong>翠屏区</strong></td><td class="num">1017.37</td><td class="num">927.16</td><td class="num">1512.46</td><td class="num"><strong>1616.30</strong></td><td class="num"><span class="kpi-change up">6.9%</span></td><td class="num">91.30</td></tr>
+<tr><td><strong>叙州区</strong></td><td class="num">506.70</td><td class="num">563.62</td><td class="num">640.33</td><td class="num"><strong>676.07</strong></td><td class="num"><span class="kpi-change up">5.6%</span></td><td class="num">95.10</td></tr>
+<tr><td><strong>南溪区</strong></td><td class="num">191.02</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">33.20</td></tr>
+<tr><td><strong>江安县</strong></td><td class="num">186.26</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">42.90</td></tr>
+<tr><td><strong>长宁县</strong></td><td class="num">180.08</td><td class="num">-</td><td class="num">-</td><td class="num"><strong>230.60</strong></td><td class="num">-</td><td class="num">33.10</td></tr>
+<tr><td><strong>高县</strong></td><td class="num">168.00</td><td class="num">-</td><td class="num">-</td><td class="num"><strong>230.38</strong></td><td class="num">-</td><td class="num">37.90</td></tr>
+<tr><td><strong>珙县</strong></td><td class="num">171.18</td><td class="num">-</td><td class="num">-</td><td class="num"><strong>224.85</strong></td><td class="num">-</td><td class="num">32.90</td></tr>
+<tr><td><strong>筠连县</strong></td><td class="num">157.00</td><td class="num">-</td><td class="num">200.00</td><td class="num"><strong>210.87</strong></td><td class="num"><span class="kpi-change up">5.4%</span></td><td class="num">32.90</td></tr>
+<tr><td><strong>兴文县</strong></td><td class="num">163.00</td><td class="num">-</td><td class="num">208.71</td><td class="num"><strong>225.16</strong></td><td class="num"><span class="kpi-change up">7.9%</span></td><td class="num">38.00</td></tr>
+<tr><td><strong>屏山县</strong></td><td class="num">84.00</td><td class="num">-</td><td class="num">119.51</td><td class="num"><strong>128.79</strong></td><td class="num"><span class="kpi-change up">7.8%</span></td><td class="num">24.50</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="tab-fiscal" class="tab-content">
+      <table class="data-table">
+        <thead><tr><th>区县</th><th>2024年收入(亿元)</th><th>2023年支出(亿元)</th><th>财政自给率</th><th>人均财力(元/人)</th></tr></thead>
+        <tbody>
+<tr><td><strong>翠屏区</strong></td><td class="num">38.00</td><td class="num">70.61</td><td class="num">53.8%</td><td class="num">4162</td></tr>
+<tr><td><strong>叙州区</strong></td><td class="num">22.83</td><td class="num">70.72</td><td class="num">32.3%</td><td class="num">2401</td></tr>
+<tr><td><strong>南溪区</strong></td><td class="num">16.79</td><td class="num">43.44</td><td class="num">38.7%</td><td class="num">5057</td></tr>
+<tr><td><strong>江安县</strong></td><td class="num">15.22</td><td class="num">32.93</td><td class="num">46.2%</td><td class="num">3548</td></tr>
+<tr><td><strong>长宁县</strong></td><td class="num">7.08</td><td class="num">26.75</td><td class="num">26.5%</td><td class="num">2139</td></tr>
+<tr><td><strong>高县</strong></td><td class="num">10.50</td><td class="num">33.12</td><td class="num">31.7%</td><td class="num">2770</td></tr>
+<tr><td><strong>珙县</strong></td><td class="num">13.59</td><td class="num">-</td><td class="num">-</td><td class="num">4131</td></tr>
+<tr><td><strong>筠连县</strong></td><td class="num">12.50</td><td class="num">33.47</td><td class="num">37.3%</td><td class="num">3799</td></tr>
+<tr><td><strong>兴文县</strong></td><td class="num">15.52</td><td class="num">39.72</td><td class="num">39.1%</td><td class="num">4084</td></tr>
+<tr><td><strong>屏山县</strong></td><td class="num">11.63</td><td class="num">30.17</td><td class="num">38.5%</td><td class="num">4747</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="tab-tourism" class="tab-content">
+      <div class="scenic-grid">
+<div class="scenic-card"><div class="scenic-name">蜀南竹海</div><div class="scenic-meta"><span class="badge badge-primary">4A</span><span class="badge badge-success">长宁县</span><span class="badge badge-warning">自然风光</span></div></div>
+<div class="scenic-card"><div class="scenic-name">兴文石海</div><div class="scenic-meta"><span class="badge badge-primary">4A</span><span class="badge badge-success">兴文县</span><span class="badge badge-warning">地质奇观</span></div></div>
+<div class="scenic-card"><div class="scenic-name">李庄古镇</div><div class="scenic-meta"><span class="badge badge-primary">4A</span><span class="badge badge-success">翠屏区</span><span class="badge badge-warning">历史文化</span></div></div>
+<div class="scenic-card"><div class="scenic-name">五粮液景区</div><div class="scenic-meta"><span class="badge badge-primary">4A</span><span class="badge badge-success">翠屏区</span><span class="badge badge-warning">工业旅游</span></div></div>
+<div class="scenic-card"><div class="scenic-name">僰王山</div><div class="scenic-meta"><span class="badge badge-primary">4A</span><span class="badge badge-success">兴文县</span><span class="badge badge-warning">自然风光</span></div></div>
+<div class="scenic-card"><div class="scenic-name">七洞沟</div><div class="scenic-meta"><span class="badge badge-primary">4A</span><span class="badge badge-success">长宁县</span><span class="badge badge-warning">自然风光</span></div></div>
+      </div>
+      <div style="margin-top:24px">
+        <h4 style="color:#1a5276;margin-bottom:12px">2024年全市文旅概览</h4>
+        <table class="data-table">
+          <thead><tr><th>指标</th><th>数值</th></tr></thead>
+          <tbody>
+            <tr><td>游客接待量</td><td class="num">9738万人次</td></tr>
+            <tr><td>旅游总收入</td><td class="num">898亿元</td></tr>
+            <tr><td>A级景区数量</td><td class="num">55家</td></tr>
+            <tr><td>4A级景区</td><td class="num">6家</td></tr>
+            <tr><td>旅游收入占GDP比重</td><td class="num">22.4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>数据来源：宜宾市统计局、财政局、文旅局公开数据 | 更新时间：2025年7月</p>
+  <p>注：部分年份区县级数据因公开渠道限制暂未获取，以"-"标注</p>
+</div>
+
+<script>
+const CHART_DATA = {
+  "city_gdp_years": [
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+  ],
+  "city_gdp_vals": [
+    2802.12,
+    3148.08,
+    3427.84,
+    3806.64,
+    4005.76
+  ],
+  "gdp_series": [
+    {
+      "name": "翠屏区",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        1017.37,
+        927.16,
+        null,
+        1512.46,
+        1616.3
+      ],
+      "itemStyle": {
+        "color": "#5470c6"
+      }
+    },
+    {
+      "name": "叙州区",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        506.7,
+        563.62,
+        null,
+        640.33,
+        676.07
+      ],
+      "itemStyle": {
+        "color": "#91cc75"
+      }
+    },
+    {
+      "name": "南溪区",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        191.02,
+        null,
+        null,
+        null,
+        null
+      ],
+      "itemStyle": {
+        "color": "#fac858"
+      }
+    },
+    {
+      "name": "江安县",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        186.26,
+        null,
+        null,
+        null,
+        null
+      ],
+      "itemStyle": {
+        "color": "#ee6666"
+      }
+    },
+    {
+      "name": "长宁县",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        180.08,
+        null,
+        null,
+        null,
+        230.6
+      ],
+      "itemStyle": {
+        "color": "#73c0de"
+      }
+    },
+    {
+      "name": "高县",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        168.0,
+        null,
+        null,
+        null,
+        230.38
+      ],
+      "itemStyle": {
+        "color": "#3ba272"
+      }
+    },
+    {
+      "name": "珙县",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        171.18,
+        null,
+        null,
+        null,
+        224.85
+      ],
+      "itemStyle": {
+        "color": "#fc8452"
+      }
+    },
+    {
+      "name": "筠连县",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        157.0,
+        null,
+        null,
+        200.0,
+        210.87
+      ],
+      "itemStyle": {
+        "color": "#9a60b4"
+      }
+    },
+    {
+      "name": "兴文县",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        163.0,
+        null,
+        null,
+        208.71,
+        225.16
+      ],
+      "itemStyle": {
+        "color": "#ea7ccc"
+      }
+    },
+    {
+      "name": "屏山县",
+      "type": "line",
+      "smooth": true,
+      "data": [
+        84.0,
+        null,
+        null,
+        119.51,
+        128.79
+      ],
+      "itemStyle": {
+        "color": "#ff9f7f"
+      }
+    }
+  ],
+  "gdp_2024_keys": [
+    "翠屏区",
+    "叙州区",
+    "长宁县",
+    "高县",
+    "兴文县",
+    "珙县",
+    "筠连县",
+    "屏山县"
+  ],
+  "gdp_2024_vals": [
+    1616.3,
+    676.07,
+    230.6,
+    230.38,
+    225.16,
+    224.85,
+    210.87,
+    128.79
+  ],
+  "rev_2024_keys": [
+    "翠屏区",
+    "叙州区",
+    "南溪区",
+    "兴文县",
+    "江安县",
+    "珙县",
+    "筠连县",
+    "屏山县",
+    "高县",
+    "长宁县"
+  ],
+  "rev_2024_vals": [
+    38.0,
+    22.83,
+    16.79,
+    15.52,
+    15.22,
+    13.59,
+    12.5,
+    11.63,
+    10.5,
+    7.08
+  ],
+  "self_ratio_keys": [
+    "翠屏区",
+    "江安县",
+    "兴文县",
+    "南溪区",
+    "屏山县",
+    "筠连县",
+    "叙州区",
+    "高县",
+    "长宁县"
+  ],
+  "self_ratio_vals": [
+    53.8,
+    46.2,
+    39.1,
+    38.7,
+    38.5,
+    37.3,
+    32.3,
+    31.7,
+    26.5
+  ],
+  "pc_gdp_keys": [
+    "翠屏区",
+    "叙州区",
+    "长宁县",
+    "珙县",
+    "筠连县",
+    "高县",
+    "兴文县",
+    "屏山县"
+  ],
+  "pc_gdp_vals": [
+    177032.0,
+    71090.0,
+    69668.0,
+    68343.0,
+    64094.0,
+    60786.0,
+    59253.0,
+    52567.0
+  ],
+  "fis_years": [
+    "2022",
+    "2023",
+    "2024"
+  ],
+  "fis_inc": [
+    null,
+    313.9,
+    324.3
+  ],
+  "fis_tax": [
+    null,
+    184.5,
+    190.77
+  ],
+  "fis_exp": [
+    610.0,
+    663.69,
+    null
+  ]
+};
+
+function switchTab(ev, tabId) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  ev.target.classList.add('active');
+}
+
+// 全市GDP趋势
+const chartCityGdp = echarts.init(document.getElementById('chart-city-gdp'));
+chartCityGdp.setOption({
+  tooltip: { trigger: 'axis' },
+  xAxis: { type: 'category', data: CHART_DATA.city_gdp_years, axisLabel: { fontSize: 13 } },
+  yAxis: { type: 'value', name: '亿元', axisLabel: { fontSize: 12 } },
+  series: [{
+    data: CHART_DATA.city_gdp_vals,
+    type: 'line', smooth: true, symbolSize: 10,
+    lineStyle: { width: 3, color: '#1a5276' },
+    itemStyle: { color: '#1a5276' },
+    areaStyle: {
+      color: new echarts.graphic.LinearGradient(0,0,0,1,[
+        { offset:0, color:'rgba(26,82,118,0.3)' },
+        { offset:1, color:'rgba(26,82,118,0.05)' }
+      ])
+    },
+    label: { show: true, position: 'top', fontSize: 13, fontWeight: 'bold' }
+  }]
+});
+
+// 2024年各区县GDP
+const chartGdp2024 = echarts.init(document.getElementById('chart-gdp-2024'));
+chartGdp2024.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  xAxis: { type: 'category', data: CHART_DATA.gdp_2024_keys, axisLabel: { fontSize: 12, rotate: 30 } },
+  yAxis: { type: 'value', name: '亿元' },
+  series: [{
+    data: CHART_DATA.gdp_2024_vals,
+    type: 'bar', barWidth: '55%',
+    itemStyle: {
+      color: new echarts.graphic.LinearGradient(0,0,0,1,[
+        { offset:0, color:'#2980b9' },
+        { offset:1, color:'#1a5276' }
+      ])
+    },
+    label: { show: true, position: 'top', fontSize: 11 }
+  }]
+});
+
+// 2024年财政收入
+const chartFiscal2024 = echarts.init(document.getElementById('chart-fiscal-2024'));
+chartFiscal2024.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  xAxis: { type: 'category', data: CHART_DATA.rev_2024_keys, axisLabel: { fontSize: 12, rotate: 30 } },
+  yAxis: { type: 'value', name: '亿元' },
+  series: [{
+    data: CHART_DATA.rev_2024_vals,
+    type: 'bar', barWidth: '55%',
+    itemStyle: { color: '#27ae60' },
+    label: { show: true, position: 'top', fontSize: 11 }
+  }]
+});
+
+// GDP趋势对比
+const chartGdpTrend = echarts.init(document.getElementById('chart-gdp-trend'));
+chartGdpTrend.setOption({
+  tooltip: { trigger: 'axis' },
+  legend: { data: ["翠屏区", "叙州区", "南溪区", "江安县", "长宁县", "高县", "珙县", "筠连县", "兴文县", "屏山县"], top: 0, textStyle: { fontSize: 11 } },
+  xAxis: { type: 'category', data: CHART_DATA.city_gdp_years },
+  yAxis: { type: 'value', name: '亿元' },
+  series: CHART_DATA.gdp_series
+});
+
+// 财政自给率
+const chartSelfRatio = echarts.init(document.getElementById('chart-self-ratio'));
+chartSelfRatio.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c}%' },
+  xAxis: { type: 'category', data: CHART_DATA.self_ratio_keys, axisLabel: { fontSize: 12, rotate: 30 } },
+  yAxis: { type: 'value', name: '%', max: 100 },
+  series: [{
+    data: CHART_DATA.self_ratio_vals,
+    type: 'bar', barWidth: '55%',
+    itemStyle: {
+      color: function(params) {
+        const colors = ['#27ae60','#2ecc71','#f1c40f','#e67e22','#e74c3c','#c0392b','#8e44ad','#9b59b6','#3498db','#2980b9'];
+        return colors[params.dataIndex % colors.length];
+      }
+    },
+    label: { show: true, position: 'top', formatter: '{c}%', fontSize: 11 }
+  }]
+});
+
+// 人均GDP
+const chartPcGdp = echarts.init(document.getElementById('chart-pc-gdp'));
+chartPcGdp.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  xAxis: { type: 'category', data: CHART_DATA.pc_gdp_keys, axisLabel: { fontSize: 12, rotate: 30 } },
+  yAxis: { type: 'value', name: '元/人' },
+  series: [{
+    data: CHART_DATA.pc_gdp_vals,
+    type: 'bar', barWidth: '55%',
+    itemStyle: { color: '#9b59b6' },
+    label: { show: true, position: 'top', formatter: function(p){ return (p.value/10000).toFixed(1)+'万'; }, fontSize: 11 }
+  }]
+});
+
+// 全市财政趋势
+const chartCityFiscal = echarts.init(document.getElementById('chart-city-fiscal'));
+chartCityFiscal.setOption({
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['财政收入','税收收入','财政支出'], top: 0 },
+  xAxis: { type: 'category', data: CHART_DATA.fis_years },
+  yAxis: { type: 'value', name: '亿元' },
+  series: [
+    { name: '财政收入', type: 'bar', data: CHART_DATA.fis_inc, itemStyle: { color: '#2980b9' }, barWidth: '25%' },
+    { name: '税收收入', type: 'bar', data: CHART_DATA.fis_tax, itemStyle: { color: '#27ae60' }, barWidth: '25%' },
+    { name: '财政支出', type: 'bar', data: CHART_DATA.fis_exp, itemStyle: { color: '#e74c3c' }, barWidth: '25%' }
+  ]
+});
+
+window.addEventListener('resize', function() {
+  chartCityGdp.resize(); chartGdp2024.resize(); chartFiscal2024.resize();
+  chartGdpTrend.resize(); chartSelfRatio.resize(); chartPcGdp.resize(); chartCityFiscal.resize();
+});
+</script>
+</body>
+</html>
