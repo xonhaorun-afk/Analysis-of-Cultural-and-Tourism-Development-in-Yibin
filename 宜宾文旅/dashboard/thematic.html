@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宜宾专题分析 - 文旅-财政交叉视角</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;
+  background:#f5f7fa;color:#333;line-height:1.6
+}
+.nav-bar{
+  background:#fff;padding:12px 24px;box-shadow:0 2px 4px rgba(0,0,0,.05);
+  display:flex;gap:24px;align-items:center;position:sticky;top:0;z-index:10
+}
+.nav-bar a{color:#1a5276;text-decoration:none;font-weight:500;font-size:.95em}
+.nav-bar a:hover{color:#2980b9}
+.nav-bar a.active{border-bottom:2px solid #1a5276;padding-bottom:4px}
+.header{
+  background:linear-gradient(135deg,#7d3c98 0%,#af7ac5 100%);
+  color:white;padding:40px 20px;text-align:center
+}
+.header h1{font-size:2.1em;margin-bottom:8px}
+.header p{opacity:.92;font-size:1.05em}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.section{
+  background:white;border-radius:12px;padding:28px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.section-title{
+  font-size:1.35em;font-weight:600;color:#7d3c98;margin-bottom:8px;
+  padding-bottom:12px;border-bottom:2px solid #f0e6f5
+}
+.section-subtitle{color:#888;font-size:.92em;margin-bottom:18px}
+.chart-container{width:100%;height:480px;margin:16px 0}
+.chart-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:20px
+}
+.chart-grid .section{margin:0}
+.insight-box{
+  background:linear-gradient(135deg,#f4ecf7 0%,#faf5fc 100%);
+  border-left:4px solid #7d3c98;padding:18px;margin:18px 0;border-radius:0 8px 8px 0
+}
+.insight-box strong{color:#7d3c98}
+.footer{text-align:center;padding:40px 20px;color:#999;font-size:.9em}
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">综合看板</a>
+  <a href="map.html">地图看板</a>
+  <a href="thematic.html" class="active">专题分析</a>
+  <a href="../report/report.html" target="_blank">分析报告</a>
+</div>
+<div class="header">
+  <h1>宜宾文旅-财政交叉专题分析</h1>
+  <p>穿透表象看结构 · 数据交叉验证结论</p>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-title">专题一：文旅资源 vs 财政实力</div>
+    <div class="section-subtitle">散点图：X=GDP(亿元), Y=财政收入(亿元)，点大小=接待游客量，颜色区分是否有4A景区</div>
+    <div id="chart-scatter" class="chart-container"></div>
+    <div class="insight-box">
+      <strong>核心洞察：</strong>拥有蜀南竹海、兴文石海等核心4A景区的长宁、兴文两县，GDP虽处于全市中游，但财政收入排名靠后（长宁7.08亿、兴文15.52亿）。翠屏区凭借五粮液+李庄古镇实现"文旅与财政双高"，但叙州区作为城市副中心，文旅资源相对薄弱，财政仍居全市第二。说明<strong>文旅资源≠财政实力</strong>，工业基础和白酒产业才是宜宾财政的核心引擎。
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="section">
+      <div class="section-title">专题二：2024 增长动能分组</div>
+      <div class="section-subtitle">按GDP增速从高到低排序</div>
+      <div id="chart-growth" class="chart-container"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">专题三：三次产业结构对比</div>
+      <div class="section-subtitle">各区县一/二/三产占比</div>
+      <div id="chart-industry" class="chart-container"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">专题四：区县梯队综合画像</div>
+    <div class="section-subtitle">按2024 GDP划分四个梯队，雷达图对比多维指标</div>
+    <div id="chart-radar" class="chart-container"></div>
+    <div class="insight-box">
+      <strong>梯队结论：</strong>
+      <ul style="margin:8px 0 0 20px;color:#555">
+        <li><strong>第一梯队（&gt;1500亿）：</strong>翠屏区"一城独大"，占全市40.3%GDP，财政自给率超50%；</li>
+        <li><strong>第二梯队（500-1000亿）：</strong>叙州区"城市副中心"，人均GDP偏低（7.06万）；</li>
+        <li><strong>第三梯队（200-300亿）：</strong>7区"集群竞逐"，长宁/兴文走文旅路线，江安/南溪面临转型压力；</li>
+        <li><strong>第四梯队（&lt;200亿）：</strong>屏山"追赶提速"（+4.6%），但产业基础最薄弱。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">专题五：4A景区分布与区县财政匹配度</div>
+    <div class="section-subtitle">横轴：4A景区数量，纵轴：财政收入（亿元）</div>
+    <div id="chart-scenic" class="chart-container"></div>
+    <div class="insight-box">
+      <strong>关键发现：</strong>
+      <ul style="margin:8px 0 0 20px;color:#555">
+        <li>长宁拥有<strong>2个4A景区+1个国家级度假区</strong>，但财政收入仅7.08亿（全市最低），是"文旅强、财政弱"的典型；</li>
+        <li>翠屏区4A景区数（2个）虽不及兴文县（2个），但因白酒产业支撑，财政收入38亿，差距悬殊；</li>
+        <li>兴文、长宁等资源富集区需强化<strong>"门票→消费→税收"</strong>的转化链路，借鉴翠屏"工业反哺文旅"模式。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">专题六：财政自给率 vs 文旅资源</div>
+    <div class="section-subtitle">散点图：X=财政自给率(%)，Y=接待游客量(万人次)，象限分析</div>
+    <div id="chart-quadrant" class="chart-container"></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>专题分析 · 基于公开政府统计数据整理</p>
+  <p>数据更新日期：2026年7月 | 工具：Python + ECharts</p>
+</div>
+
+<script>
+const SCATTER_DATA = [{"name": "翠屏区", "gdp": 1616.3, "revenue": 38.0, "visitors": 3860, "tourism_revenue": null, "has_scenic": true, "brand": "五粮液、李庄古镇、城市文旅"}, {"name": "叙州区", "gdp": 676.07, "revenue": 22.83, "visitors": null, "tourism_revenue": null, "has_scenic": false, "brand": ""}, {"name": "南溪区", "gdp": 230.91, "revenue": 16.79, "visitors": null, "tourism_revenue": null, "has_scenic": false, "brand": ""}, {"name": "江安县", "gdp": 231.83, "revenue": 15.22, "visitors": null, "tourism_revenue": null, "has_scenic": false, "brand": ""}, {"name": "长宁县", "gdp": 230.6, "revenue": 7.08, "visitors": 1517.58, "tourism_revenue": 154.53, "has_scenic": true, "brand": "蜀南竹海（4A）、天府旅游名县、连续3年百强"}, {"name": "高县", "gdp": 230.38, "revenue": 10.5, "visitors": null, "tourism_revenue": null, "has_scenic": false, "brand": ""}, {"name": "珙县", "gdp": 224.85, "revenue": 13.59, "visitors": null, "tourism_revenue": null, "has_scenic": false, "brand": ""}, {"name": "筠连县", "gdp": 210.87, "revenue": 12.5, "visitors": null, "tourism_revenue": null, "has_scenic": false, "brand": "南丝绸之路不夜城、大雪山、乡村游"}, {"name": "兴文县", "gdp": 225.16, "revenue": 15.52, "visitors": null, "tourism_revenue": null, "has_scenic": true, "brand": "兴文石海（4A）、苗文化、僰王山、天府旅游名县"}, {"name": "屏山县", "gdp": 128.79, "revenue": 11.63, "visitors": 316, "tourism_revenue": 24.65, "has_scenic": true, "brand": "八仙山（2024新晋4A）、马湖府古城"}];
+const GROWTH_DATA = [{"name": "翠屏区", "growth": 6.5}, {"name": "高县", "growth": 5.2}, {"name": "叙州区", "growth": 5.0}, {"name": "筠连县", "growth": 4.8}, {"name": "屏山县", "growth": 4.6}, {"name": "长宁县", "growth": 4.5}, {"name": "珙县", "growth": 3.6}, {"name": "兴文县", "growth": 3.5}, {"name": "南溪区", "growth": 1.8}, {"name": "江安县", "growth": 1.4}];
+const GDP_2024 = [["翠屏区", 1616.3], ["叙州区", 676.07], ["江安县", 231.83], ["南溪区", 230.91], ["长宁县", 230.6], ["高县", 230.38], ["兴文县", 225.16], ["珙县", 224.85], ["筠连县", 210.87], ["屏山县", 128.79]];
+const SCENIC_PER = {"长宁县": 3, "兴文县": 2, "翠屏区": 2, "屏山县": 1};
+const INDUSTRY = {"全市": {"一产": 9.1, "二产": 48.5, "三产": 42.4}, "翠屏区(2023)": {"一产": 3.3, "二产": 64.6, "三产": 32.1}, "江安县": {"一产": 15.2, "二产": 32.3, "三产": 52.5}, "屏山县(2022)": {"一产": 24.9, "二产": 35.4, "三产": 39.7}};
+const DISTRICTS = ["翠屏区", "叙州区", "南溪区", "江安县", "长宁县", "高县", "珙县", "筠连县", "兴文县", "屏山县"];
+
+const chartScatter = echarts.init(document.getElementById('chart-scatter'));
+chartScatter.setOption({
+  tooltip: {
+    trigger: 'item',
+    formatter: function(p) {
+      const d = p.data;
+      return `<b>${d[0]}</b><br/>GDP: ${d[1]} 亿元<br/>财政收入: ${d[2]} 亿元<br/>接待游客: ${d[3]||'-'} 万人次<br/>${d[4]?'含4A景区':'暂无4A'}`;
+    }
+  },
+  legend: { data: ['含4A景区','暂无4A'], top: 0, textStyle: { fontSize: 12 } },
+  grid: { left: 70, right: 30, top: 40, bottom: 50 },
+  xAxis: {
+    name: 'GDP (亿元)', nameLocation: 'middle', nameGap: 30,
+    type: 'value', axisLabel: { fontSize: 11 }
+  },
+  yAxis: {
+    name: '财政收入 (亿元)', nameLocation: 'middle', nameGap: 50,
+    type: 'value', axisLabel: { fontSize: 11 }
+  },
+  series: [
+    {
+      name: '含4A景区',
+      type: 'scatter',
+      symbolSize: function(d) { return Math.max(15, (d[3]||0)/20); },
+      data: SCATTER_DATA.filter(d => d.has_scenic).map(d => [d.name, d.gdp, d.revenue, d.visitors, d.has_scenic]),
+      itemStyle: { color: '#e74c3c', opacity: 0.7 },
+      label: {
+        show: true, formatter: '{@[0]}', position: 'top', fontSize: 11, color: '#333'
+      }
+    },
+    {
+      name: '暂无4A',
+      type: 'scatter',
+      symbolSize: 15,
+      data: SCATTER_DATA.filter(d => !d.has_scenic).map(d => [d.name, d.gdp, d.revenue, d.visitors, d.has_scenic]),
+      itemStyle: { color: '#3498db', opacity: 0.6 },
+      label: {
+        show: true, formatter: '{@[0]}', position: 'top', fontSize: 11, color: '#333'
+      }
+    }
+  ]
+});
+
+const chartGrowth = echarts.init(document.getElementById('chart-growth'));
+chartGrowth.setOption({
+  tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+  grid: { left: 50, right: 30, top: 20, bottom: 60 },
+  xAxis: {
+    type: 'category', data: GROWTH_DATA.map(d => d.name),
+    axisLabel: { fontSize: 11, rotate: 25 }
+  },
+  yAxis: { type: 'value', name: '增速(%)', axisLabel: { formatter: '{value}%' } },
+  series: [{
+    type: 'bar',
+    data: GROWTH_DATA.map(d => ({
+      value: d.growth,
+      itemStyle: { color: d.growth >= 5 ? '#27ae60' : d.growth >= 3 ? '#f39c12' : d.growth >= 0 ? '#3498db' : '#e74c3c' }
+    })),
+    label: { show: true, position: 'top', formatter: '{c}%', fontSize: 11 },
+    barWidth: '60%'
+  }]
+});
+
+const chartIndustry = echarts.init(document.getElementById('chart-industry'));
+const industryNames = Object.keys(INDUSTRY);
+const industryData = industryNames.map(name => ({
+  name: name,
+  value: [INDUSTRY[name]['一产'], INDUSTRY[name]['二产'], INDUSTRY[name]['三产']]
+}));
+chartIndustry.setOption({
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['一产', '二产', '三产'], top: 0 },
+  grid: { left: 50, right: 30, top: 40, bottom: 60 },
+  xAxis: {
+    type: 'category', data: industryNames,
+    axisLabel: { fontSize: 11, rotate: 20 }
+  },
+  yAxis: { type: 'value', name: '占比(%)' },
+  series: [
+    { name: '一产', type: 'bar', stack: '产业结构', data: industryData.map(d => d.value[0]), itemStyle: { color: '#27ae60' } },
+    { name: '二产', type: 'bar', stack: '产业结构', data: industryData.map(d => d.value[1]), itemStyle: { color: '#2980b9' } },
+    { name: '三产', type: 'bar', stack: '产业结构', data: industryData.map(d => d.value[2]), itemStyle: { color: '#f39c12' } }
+  ]
+});
+
+const chartRadar = echarts.init(document.getElementById('chart-radar'));
+const tiers = [
+  { name: '第一梯队：翠屏区', values: [1616, 38, 3860, 92.8, 6.5] },
+  { name: '第二梯队：叙州区', values: [676, 22.8, null, 95.8, 5.0] },
+  { name: '第三梯队：长宁县', values: [230.6, 7.08, 1517.6, 32.7, 4.5] },
+  { name: '第三梯队：兴文县', values: [225, 15.5, null, 37.8, 3.5] },
+  { name: '第四梯队：屏山县', values: [128.8, 11.6, 316, 24.2, 4.6] }
+];
+chartRadar.setOption({
+  tooltip: {},
+  legend: { data: tiers.map(t => t.name), top: 0, textStyle: { fontSize: 11 } },
+  radar: {
+    indicator: [
+      { name: 'GDP(亿元)', max: 1700 },
+      { name: '财政收入(亿元)', max: 40 },
+      { name: '游客(万人次)', max: 4000 },
+      { name: '人口(万)', max: 100 },
+      { name: '增速(%)', max: 8 }
+    ]
+  },
+  series: [{
+    type: 'radar',
+    data: tiers.map(t => ({
+      name: t.name,
+      value: t.values.map((v, i) => i === 1 ? v : v)
+    }))
+  }]
+});
+
+const chartScenic = echarts.init(document.getElementById('chart-scenic'));
+const scenicData = DISTRICTS.map(d => ({
+  name: d,
+  scenic: SCENIC_PER[d] || 0,
+  revenue: 0
+})).map(d => ({
+  ...d,
+  revenue: SCATTER_DATA.find(s => s.name === d.name)?.revenue || 0
+}));
+chartScenic.setOption({
+  tooltip: { trigger: 'item' },
+  grid: { left: 50, right: 30, top: 20, bottom: 60 },
+  xAxis: {
+    type: 'category', data: scenicData.map(d => d.name),
+    axisLabel: { fontSize: 11, rotate: 25 }
+  },
+  yAxis: [
+    { type: 'value', name: '4A景区数', max: 4, position: 'left' },
+    { type: 'value', name: '财政收入(亿元)', position: 'right' }
+  ],
+  series: [
+    {
+      name: '4A景区数', type: 'bar', data: scenicData.map(d => d.scenic),
+      itemStyle: { color: '#e74c3c' }, barWidth: '40%',
+      label: { show: true, position: 'top' }
+    },
+    {
+      name: '财政收入', type: 'line', yAxisIndex: 1,
+      data: scenicData.map(d => d.revenue),
+      itemStyle: { color: '#2980b9' }, symbolSize: 10,
+      lineStyle: { width: 3 }
+    }
+  ]
+});
+
+const chartQuadrant = echarts.init(document.getElementById('chart-quadrant'));
+const quadrantData = SCATTER_DATA
+  .filter(d => d.visitors !== null)
+  .map(d => ({
+    name: d.name,
+    value: [d.self_ratio || 0, d.visitors, d.revenue]
+  }));
+chartQuadrant.setOption({
+  tooltip: {
+    trigger: 'item',
+    formatter: function(p) {
+      return `<b>${p.data.name}</b><br/>财政自给率: ${p.value[0]}%<br/>接待游客: ${p.value[1]} 万人次<br/>财政收入: ${p.value[2]} 亿元`;
+    }
+  },
+  grid: { left: 60, right: 30, top: 30, bottom: 50 },
+  xAxis: { name: '财政自给率 (%)', nameLocation: 'middle', nameGap: 30, type: 'value' },
+  yAxis: { name: '接待游客 (万人次)', nameLocation: 'middle', nameGap: 45, type: 'value' },
+  series: [{
+    type: 'scatter',
+    symbolSize: 20,
+    data: quadrantData,
+    itemStyle: { color: '#9b59b6', opacity: 0.7 },
+    label: { show: true, formatter: '{@[0]}', position: 'right', fontSize: 11 }
+  }]
+});
+
+window.addEventListener('resize', function() {
+  chartScatter.resize(); chartGrowth.resize(); chartIndustry.resize();
+  chartRadar.resize(); chartScenic.resize(); chartQuadrant.resize();
+});
+</script>
+</body>
+</html>

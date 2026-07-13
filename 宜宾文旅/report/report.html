@@ -27,97 +27,141 @@ th{background:#f0f4f8;font-weight:600;color:#555}
 tr:hover{background:#f8f9fa}
 td.num{text-align:right;font-family:monospace}
 .footer{margin-top:60px;padding-top:20px;border-top:1px solid #e0e0e0;color:#999;font-size:.9em;text-align:center}
+.nav-bar{
+  position:sticky;top:0;background:#fff;padding:10px 20px;
+  box-shadow:0 2px 4px rgba(0,0,0,.05);text-align:center;
+  border-bottom:1px solid #eee;margin:-40px -20px 24px
+}
+.nav-bar a{color:#1a5276;text-decoration:none;margin:0 12px;font-size:.92em}
 </style>
 </head>
 <body>
+<div class="nav-bar">
+  <a href="../dashboard/index.html">综合看板</a>
+  <a href="../dashboard/map.html">地图看板</a>
+  <a href="../dashboard/thematic.html">专题分析</a>
+</div>
 <h1>宜宾市各区县财政与文旅发展分析报告</h1>
-<div class="meta">数据周期：2021-2025年 | 报告日期：2025年7月 | 数据来源：公开政府统计</div>
+<div class="meta">数据周期：2020-2024年 | 报告日期：2026年7月 | 数据来源：公开政府统计</div>
 
 <h2>一、概述</h2>
-<p>宜宾市位于四川省南部，地处川、滇、黔三省结合部，是长江上游区域中心城市。全市辖3区7县，总面积约1.33万平方公里，2024年末常住人口约461万人。</p>
-<p>2024年，宜宾市实现地区生产总值<span class="highlight">4005.76亿元</span>，经济总量排名四川省第三位；一般公共预算收入324.3亿元，排名全省第二位。同年接待游客<span class="highlight">9738万人次</span>，实现旅游收入898亿元，文旅产业已成为全市经济的重要组成部分。</p>
+<p>宜宾市位于四川省南部，地处川、滇、黔三省结合部，是长江上游区域中心城市。全市辖3区7县，总面积约1.33万平方公里，2024年末常住人口约<span class="highlight">461.1万人</span>。</p>
+<p>2024年，宜宾市实现地区生产总值<span class="highlight">4005.76亿元</span>，经济总量排名四川省第三位；一般公共预算收入<span class="highlight">324.30亿元</span>，排名全省第二位。同年接待游客<span class="highlight">9739.82万人次</span>（同比+9.42%），实现旅游收入898.22亿元（同比+11.61%），文旅产业已成为全市经济的重要组成部分。</p>
 
 <h2>二、经济发展格局</h2>
 <h3>2.1 总体态势</h3>
-<p>宜宾市经济呈现"一超多强"格局。翠屏区以1616.3亿元的GDP遥遥领先，占全市经济总量的40%以上，是全市经济的核心引擎。叙州区以676.07亿元位居第二，但与翠屏区差距明显。</p>
+<p>宜宾市经济呈现"<strong>一超多强</strong>"格局。翠屏区以1616.30亿元的GDP遥遥领先，占全市经济总量的<span class="highlight">40.3%</span>，是全市经济的核心引擎。叙州区以676.07亿元位居第二，但与翠屏区差距明显。</p>
 <div class="insight-box">
-<strong>核心发现：</strong>翠屏区GDP是叙州区的2.4倍，是排名末位屏山县的12.5倍，区县间经济发展差距显著。
+<strong>核心发现：</strong>翠屏区GDP是叙州区的2.4倍，是排名末位屏山县的12.5倍，区县间经济发展差距显著。2024年翠屏区人均GDP达17.42万元，<span class="highlight">唯一超过全国平均线</span>（9.57万元）的区县；其余9个区县均低于全国平均。
 </div>
 
-<h3>2.2 区县梯队划分</h3>
+<h3>2.2 区县梯队划分（基于2024 GDP）</h3>
 <table>
 <tr><th>梯队</th><th>区县</th><th>2024年GDP</th><th>特征</th></tr>
-<tr><td>第一梯队</td><td>翠屏区</td><td class="num">1616.3亿元</td><td>全市核心，白酒+新能源产业驱动</td></tr>
-<tr><td>第二梯队</td><td>叙州区</td><td class="num">676.1亿元</td><td>城市副中心，高新技术产业</td></tr>
-<tr><td>第三梯队</td><td>长宁县、高县、兴文县、珙县、筠连县</td><td class="num">210-231亿元</td><td>中游水平，文旅和农业资源较丰富</td></tr>
-<tr><td>第四梯队</td><td>南溪区、江安县、屏山县</td><td class="num">约129-200亿元</td><td>体量较小，南溪和江安2024年负增长</td></tr>
+<tr><td>第一梯队</td><td>翠屏区</td><td class="num">1616.3亿元</td><td>全市核心，白酒+动力电池双引擎，二产占64.6%</td></tr>
+<tr><td>第二梯队</td><td>叙州区</td><td class="num">676.1亿元</td><td>城市副中心，光伏储能产业，人口规模最大</td></tr>
+<tr><td>第三梯队</td><td>长宁县、高县、江安县、南溪区、兴文县、珙县、筠连县</td><td class="num">210-232亿元</td><td>中游水平集群竞逐，差距不足21亿</td></tr>
+<tr><td>第四梯队</td><td>屏山县</td><td class="num">128.8亿元</td><td>体量最小，脱贫后稳步增长</td></tr>
 </table>
 
-<h3>2.3 增长动能分析</h3>
-<p>2024年，受第五次全国经济普查影响，各区县GDP出现较大调整。兴文县（+7.9%）和屏山县（+7.8%）名义增速领先，表现最为出色。值得关注的是，<span class="highlight">江安县和南溪区出现负增长</span>，需关注其产业结构调整进度。</p>
+<h3>2.3 各区县GDP时间序列（亿元）</h3>
+<table>
+<tr><th>区县</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2024增速</th><th>人口(万)</th><th>人均GDP</th></tr>
+<tr><td><strong>翠屏区</strong></td><td class="num">1017.37</td><td class="num">1164.45</td><td class="num">1406.85</td><td class="num">1512.46</td><td class="num"><strong>1616.30</strong></td><td class="num">+6.5%</td><td class="num">92.80</td><td class="num">17.4万</td></tr><tr><td><strong>叙州区</strong></td><td class="num">506.70</td><td class="num">563.62</td><td class="num">590.40</td><td class="num">640.33</td><td class="num"><strong>676.07</strong></td><td class="num">+5.0%</td><td class="num">95.80</td><td class="num">7.1万</td></tr><tr><td><strong>南溪区</strong></td><td class="num">191.02</td><td class="num">-</td><td class="num">215.30</td><td class="num">-</td><td class="num"><strong>230.91</strong></td><td class="num">+1.8%</td><td class="num">33.40</td><td class="num">6.9万</td></tr><tr><td><strong>江安县</strong></td><td class="num">186.26</td><td class="num">-</td><td class="num">271.91</td><td class="num">-</td><td class="num"><strong>231.83</strong></td><td class="num">+1.4%</td><td class="num">42.10</td><td class="num">5.5万</td></tr><tr><td><strong>长宁县</strong></td><td class="num">180.08</td><td class="num">200.16</td><td class="num">207.76</td><td class="num">-</td><td class="num"><strong>230.60</strong></td><td class="num">+4.5%</td><td class="num">32.70</td><td class="num">7.1万</td></tr><tr><td><strong>高县</strong></td><td class="num">168.53</td><td class="num">-</td><td class="num">202.38</td><td class="num">-</td><td class="num"><strong>230.38</strong></td><td class="num">+5.2%</td><td class="num">37.20</td><td class="num">6.2万</td></tr><tr><td><strong>珙县</strong></td><td class="num">171.18</td><td class="num">-</td><td class="num">206.15</td><td class="num">-</td><td class="num"><strong>224.85</strong></td><td class="num">+3.6%</td><td class="num">32.70</td><td class="num">6.9万</td></tr><tr><td><strong>筠连县</strong></td><td class="num">146.20</td><td class="num">-</td><td class="num">173.47</td><td class="num">200.00</td><td class="num"><strong>210.87</strong></td><td class="num">+4.8%</td><td class="num">32.40</td><td class="num">6.5万</td></tr><tr><td><strong>兴文县</strong></td><td class="num">148.11</td><td class="num">-</td><td class="num">178.00</td><td class="num">208.71</td><td class="num"><strong>225.16</strong></td><td class="num">+3.5%</td><td class="num">37.80</td><td class="num">6.0万</td></tr><tr><td><strong>屏山县</strong></td><td class="num">86.67</td><td class="num">-</td><td class="num">110.48</td><td class="num">119.51</td><td class="num"><strong>128.79</strong></td><td class="num">+4.6%</td><td class="num">24.20</td><td class="num">5.3万</td></tr>
+</table>
+
+<h3>2.4 增长动能分析</h3>
+<p>2024年，受第五次全国经济普查影响，各区县GDP出现较大调整。兴文县（+3.5%实际增速，名义+7.9%）和屏山县（+4.6%实际增速，名义+7.8%）名义增速领先，表现最为出色。值得关注的是，<span class="highlight">江安县（+1.4%）和南溪区（+1.8%）增速疲软</span>，产业结构调整压力较大。</p>
+<div class="warning-box">
+<strong>增长分化：</strong>全市呈现"<strong>头部高增、中部分化、尾部追赶</strong>"格局：高县（+5.2%）、翠屏区（+6.5%）领跑，江安/南溪掉队，需警惕区域经济下行风险。
+</div>
 
 <h2>三、财政状况分析</h2>
 <h3>3.1 财政收入格局</h3>
-<p>2024年各区县财政收入排名前三位为：翠屏区（38.0亿元）、叙州区（22.8亿元）、南溪区（16.8亿元）。市级财政收入115.94亿元，三江新区43.01亿元，均为全市财政重要来源。</p>
+<p>2024年宜宾市地方一般公共预算收入324.30亿元，其中：<strong>市级115.94亿（35.8%）、三江新区43.01亿（13.3%）、各区县合计165.35亿（50.9%）</strong>。区县中前三：翠屏区38.00亿、叙州区22.83亿、南溪区16.79亿。</p>
 <div class="warning-box">
-<strong>风险提示：</strong>高县税收收入同比下降7.58%，财政收入质量有所下滑；长宁县财政收入仅7.08亿元，财政实力最弱。
+<strong>风险提示：</strong>高县税收收入同比下降7.58%，财政收入质量有所下滑；长宁县财政收入仅7.08亿元，财政实力全市最弱。珙县2024年财政收入13.59亿元，同比大幅下降26.76%，主要因市场行情波动和政策调整，欧冶链金、中环国际等重点税源企业经营受冲击。
 </div>
 
 <h3>3.2 财政自给率</h3>
-<p>财政自给率反映地区财政自给能力（财政收入/财政支出）。以2024年收入与2023年支出计算：</p>
+<p>财政自给率反映地区财政自给能力（财政收入/财政支出）。以2024年收入与2023/2024年支出计算：</p>
 <table>
-<tr><th>区县</th><th>2024年收入(亿元)</th><th>2023年支出(亿元)</th><th>自给率</th><th>评价</th></tr>
-<tr><td>翠屏区</td><td class="num">38.00</td><td class="num">70.61</td><td class="num">53.8%</td><td>自给能力较强</td></tr><tr><td>叙州区</td><td class="num">22.83</td><td class="num">70.72</td><td class="num">32.3%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>南溪区</td><td class="num">16.79</td><td class="num">43.44</td><td class="num">38.7%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>江安县</td><td class="num">15.22</td><td class="num">32.93</td><td class="num">46.2%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>长宁县</td><td class="num">7.08</td><td class="num">26.75</td><td class="num">26.5%</td><td>自给能力弱，高度依赖转移支付</td></tr><tr><td>高县</td><td class="num">10.50</td><td class="num">33.12</td><td class="num">31.7%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>筠连县</td><td class="num">12.50</td><td class="num">33.47</td><td class="num">37.3%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>兴文县</td><td class="num">15.52</td><td class="num">39.72</td><td class="num">39.1%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>屏山县</td><td class="num">11.63</td><td class="num">30.17</td><td class="num">38.5%</td><td>自给能力一般，依赖转移支付</td></tr>
+<tr><th>区县</th><th>2024年收入(亿元)</th><th>2023/2024年支出(亿元)</th><th>自给率</th><th>收入同比</th><th>评价</th></tr>
+<tr><td>翠屏区</td><td class="num">38.00</td><td class="num">70.20</td><td class="num">54.1%</td><td class="num">+2.1%</td><td>自给能力较强</td></tr><tr><td>叙州区</td><td class="num">22.83</td><td class="num">70.72</td><td class="num">32.3%</td><td class="num">-</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>南溪区</td><td class="num">16.79</td><td class="num">38.60</td><td class="num">43.5%</td><td class="num">-7.4%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>江安县</td><td class="num">15.22</td><td class="num">32.93</td><td class="num">46.2%</td><td class="num">-</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>长宁县</td><td class="num">7.08</td><td class="num">26.75</td><td class="num">26.5%</td><td class="num">-</td><td>自给能力弱，高度依赖转移支付</td></tr><tr><td>高县</td><td class="num">10.50</td><td class="num">33.12</td><td class="num">31.7%</td><td class="num">-</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>珙县</td><td class="num">13.59</td><td class="num">32.17</td><td class="num">42.2%</td><td class="num">-26.8%</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>筠连县</td><td class="num">12.50</td><td class="num">33.47</td><td class="num">37.3%</td><td class="num">-</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>兴文县</td><td class="num">15.52</td><td class="num">39.72</td><td class="num">39.1%</td><td class="num">-</td><td>自给能力一般，依赖转移支付</td></tr><tr><td>屏山县</td><td class="num">11.63</td><td class="num">27.86</td><td class="num">41.7%</td><td class="num">-20.4%</td><td>自给能力一般，依赖转移支付</td></tr>
 </table>
+<p>全市9个可比区县中，<strong>仅翠屏区自给率超过50%</strong>，其余均在30%-47%之间，对上级转移支付依赖度较高。值得关注的是，部分资源型区县（珙县、屏山）2024年收入大幅下滑，但支出保持刚性，自给率较2023年明显恶化。</p>
 
 <h3>3.3 市级财政趋势</h3>
-<p>2023年全市一般公共预算收入313.9亿元，2024年增长至324.3亿元，增速3.3%。税收占比维持在58.8%左右，财政收入质量相对稳定。2025年1-5月，全市地方一般公共预算收入175.99亿元，同比增长6.4%，开局良好。</p>
+<p>2023年全市一般公共预算收入313.99亿元，2024年增长至324.30亿元，增速3.3%。税收占比维持在58.8%左右，财政收入质量相对稳定。2025年1-5月，全市地方一般公共预算收入175.99亿元，同比增长6.4%，开局良好。</p>
+<div class="insight-box">
+<strong>财政结构亮点：</strong>2024年高技术制造业增加值增长29.3%，晶硅光伏+32.3%、智能网联新能源汽车+27.6%、动力电池+15.0%、酒类+7.7%——"4+4+4"产业体系成为税收增长的新动能。
+</div>
 
 <h2>四、文旅发展分析</h2>
 <h3>4.1 总体规模</h3>
-<p>2024年宜宾市共接待游客9738万人次，实现旅游收入898亿元。按全市GDP4005.76亿元计算，<span class="highlight">旅游收入占GDP比重达22.4%</span>，文旅产业对经济的贡献度较高。</p>
+<p>2024年宜宾市共接待游客9739.82万人次（+9.42%），实现旅游收入898.22亿元（+11.61%）。按全市GDP 4005.76亿元计算，<span class="highlight">旅游收入占GDP比重达22.4%</span>，文旅产业对经济的贡献度较高。</p>
 
-<h3>4.2 核心资源分布</h3>
-<p>宜宾市文旅资源呈现明显的区县集中特征：</p>
-<ul>
-<li><strong>翠屏区：</strong>五粮液景区（工业旅游）、李庄古镇（历史文化）、城市文旅综合体</li>
-<li><strong>长宁县：</strong>蜀南竹海（4A级，自然风光龙头）、七洞沟</li>
-<li><strong>兴文县：</strong>兴文石海（4A级，地质奇观）、僰王山</li>
-</ul>
+<h3>4.2 区县文旅数据（已披露）</h3>
+<table>
+<tr><th>区县</th><th>2024年接待游客</th><th>2024年旅游收入</th><th>核心文旅品牌</th></tr>
+<tr><td>翠屏区</td><td class="num">3860万人次</td><td class="num">-</td><td>五粮液、李庄古镇（年接待500万+）</td></tr>
+<tr><td>长宁县</td><td class="num">1517.58万人次</td><td class="num">154.53亿元</td><td>蜀南竹海、七洞沟、连续3年全国百强</td></tr>
+<tr><td>屏山县</td><td class="num">316万人次</td><td class="num">24.65亿元</td><td>八仙山（2024新晋4A）、马湖府古城</td></tr>
+<tr><td>兴文县</td><td class="num">-</td><td class="num">-</td><td>兴文石海、僰王山、天府旅游名县</td></tr>
+</table>
 <div class="insight-box">
-<strong>文旅-财政交叉分析：</strong>拥有核心文旅资源的长宁县和兴文县，财政收入分别仅7.08亿元和15.52亿元，处于全市末位。文旅资源优势尚未充分转化为财政实力，"文旅强、财政弱"现象明显。
+<strong>文旅-财政交叉分析：</strong>拥有蜀南竹海、兴文石海等核心4A景区的长宁、兴文两县，2024年财政收入分别仅7.08亿元和15.52亿元，处于全市末位。<strong>文旅资源尚未充分转化为财政实力</strong>，"文旅强、财政弱"现象明显。翠屏区凭借白酒产业+李庄古镇的组合，实现"文旅与财政双高"。
 </div>
 
-<h3>4.3 发展瓶颈</h3>
-<p>1. <strong>区县文旅数据缺失：</strong>目前公开渠道仅能获取市级层面的游客接待量和旅游收入，各区县细分数据极少披露，不利于精准施策。</p>
+<h3>4.3 文旅政策与投入</h3>
+<p>宜宾市自2019年设立市级文旅发展专项资金以来，年均投入超<span class="highlight">2亿元</span>。2023-2024年累计2457万元文旅消费券资金，撬动消费近亿元。创新"税收反哺"机制，将景区区域市级分成的税收和土地收入反哺景区发展，近两年累计补助李庄景区和"两海"景区1.02亿元。截至2025年7月末，全市文化、体育、娱乐和住宿餐饮业贷款余额达21.82亿元。</p>
+
+<h3>4.4 发展瓶颈</h3>
+<p>1. <strong>区县文旅数据披露不充分：</strong>除翠屏、长宁、屏山外，其他区县2024年文旅数据未公开披露，不利于精准施策。</p>
 <p>2. <strong>资源转化效率待提升：</strong>核心景区多位于经济欠发达区县，基础设施和配套服务仍有提升空间。</p>
 <p>3. <strong>品牌联动不足：</strong>蜀南竹海、兴文石海、李庄古镇等核心景区相对独立，缺乏统一的旅游线路串联和营销整合。</p>
+<p>4. <strong>消费转化偏弱：</strong>2024年固投同比-18.4%，社零仅+1.2%，消费市场恢复滞后，文旅消费拉动效果有限。</p>
 
-<h2>五、核心结论与建议</h2>
-<h3>5.1 核心结论</h3>
-<p>1. <strong>经济集中度极高：</strong>翠屏区独占全市40%以上的GDP，区县发展不均衡问题突出。</p>
-<p>2. <strong>财政自给率偏低：</strong>多数区县财政自给率不足50%，对上级转移支付依赖度较高。</p>
-<p>3. <strong>文旅贡献显著但转化不足：</strong>旅游收入占GDP超22%，但文旅资源丰富的区县财政收入排名靠后。</p>
-<p>4. <strong>部分区县增长乏力：</strong>南溪区和江安县2024年GDP负增长，需警惕经济下行风险。</p>
+<h2>五、专题发现：交叉视角</h2>
+<h3>5.1 经济结构对比</h3>
+<p>翠屏区（2023年）三次产业结构为3.3:64.6:32.1，工业主导特征明显；江安县（2024）为15.2:32.3:52.5，三产已超半数；屏山县（2022）为24.9:35.4:39.7，仍处农业主导阶段。不同区县的产业结构差异巨大，<strong>翠屏是工业驱动型，江安是三产驱动型，屏山是农业驱动型</strong>。</p>
 
-<h3>5.2 政策建议</h3>
+<h3>5.2 财政与文旅的"剪刀差"</h3>
+<p>长宁县2024年游客1517.58万人次（占全市15.6%），旅游收入154.53亿元（占全市17.2%），但财政收入仅7.08亿元（占全市2.2%）。反观翠屏区，游客3860万人次，财政收入38亿元，<strong>单位游客创造的财政收入约为长宁的5倍</strong>。差距源于：1）翠屏有白酒税源支撑；2）长宁以观光为主，住宿餐饮等延伸消费不足。</p>
+
+<h3>5.3 增长分化预警</h3>
+<p>江安县2024年GDP增速1.4%（全市最低），财政自给率46.2%，但二产占比仅32.3%，主因是房地产低迷+传统工业转型慢。南溪区GDP增速1.8%，财政自给率38.7%，受传统工业转型拖累。需重点关注这两个区县的产业转型路径。</p>
+
+<h2>六、核心结论与建议</h2>
+<h3>6.1 核心结论</h3>
+<ol>
+<li><strong>经济集中度极高：</strong>翠屏区独占全市40.3%的GDP，是叙州区的2.4倍，区县发展不均衡问题突出。</li>
+<li><strong>人均GDP分化明显：</strong>仅翠屏区人均GDP（17.42万）超过全国平均水平（9.57万），屏山县仅5.32万元垫底。</li>
+<li><strong>财政自给率整体偏低：</strong>9个可比区县中仅翠屏超50%，多数在30%-47%之间，对转移支付依赖较高。</li>
+<li><strong>部分区县财政恶化：</strong>珙县（-26.76%）、屏山（-20.42%）、南溪（-7.4%）2024年收入大幅下滑，需警惕财政风险。</li>
+<li><strong>文旅贡献显著但转化不足：</strong>旅游收入占GDP 22.4%，但文旅资源富集区长宁/兴文财政排名全市末位，"文旅强、财政弱"现象明显。</li>
+<li><strong>产业"4+4+4"成新动能：</strong>晶硅光伏、智能网联新能源汽车、动力电池、酒类增速亮眼，财政质量改善可期。</li>
+</ol>
+
+<h3>6.2 政策建议</h3>
 <p><strong>对财政方面：</strong></p>
 <ul>
-<li>优化税收结构，提高税收占比，减少非税收入依赖</li>
-<li>加强财源建设，培育可持续的税收增长点</li>
-<li>建立区县财政风险预警机制，关注自给率持续下降的区县</li>
+<li>优化税收结构，提高税收占比（当前约58.8%），减少非税收入依赖</li>
+<li>建立区县财政风险预警机制，重点关注珙县、屏山等收入大幅下滑区县</li>
+<li>加大对高技术制造业的财源培育，承接"4+4+4"产业税收落地</li>
 </ul>
 <p><strong>对文旅方面：</strong></p>
 <ul>
-<li>建立区县文旅统计体系，定期披露游客量和旅游收入数据</li>
-<li>推动"文旅+"融合发展，提升景区周边消费带动能力</li>
-<li>构建统一的长江文旅品牌，串联核心景区形成精品旅游线路</li>
-<li>支持兴文县、长宁县等文旅资源富集区发展文旅配套产业</li>
+<li>建立区县文旅统计强制披露制度，定期公开游客量和旅游收入</li>
+<li>推动"文旅+"融合发展，提升景区周边消费带动能力（住宿、餐饮、文创）</li>
+<li>构建"蜀南竹海—兴文石海—李庄古镇"精品旅游线路，打造长江文旅统一品牌</li>
+<li>支持长宁/兴文等资源富集区县发展"夜经济""研学游""康养游"等延伸业态</li>
+<li>借鉴翠屏"工业反哺文旅"经验，探索酒旅融合、茶旅融合新模式</li>
 </ul>
 
 <div class="footer">
-<p>本报告基于公开政府统计数据整理分析</p>
-<p>数据更新日期：2025年7月 | 分析工具：Python + ECharts</p>
+<p>本报告基于公开政府统计数据整理分析 | 数据更新日期：2026年7月</p>
+<p>分析工具：Python + ECharts | 数据来源：宜宾市统计局、财政局、文旅局、各区县统计局</p>
 </div>
 </body>
 </html>
