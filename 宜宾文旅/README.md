@@ -2,6 +2,16 @@
 
 > 基于 2020-2024 年公开政府统计数据，构建多维度数据可视化与分析体系
 
+## 🌐 直接访问网站
+
+| 页面 | 链接 |
+|------|------|
+| 🏠 **首页导航** | https://xonhaorun-afk.github.io/yibin-fiscal-tourism-dashboard/ |
+| 🗺️ **地图看板** | https://xonhaorun-afk.github.io/yibin-fiscal-tourism-dashboard/dashboard/map.html |
+| 📊 **综合看板** | https://xonhaorun-afk.github.io/yibin-fiscal-tourism-dashboard/dashboard/index.html |
+| 🔬 **专题分析** | https://xonhaorun-afk.github.io/yibin-fiscal-tourism-dashboard/dashboard/thematic.html |
+| 📄 **分析报告** | https://xonhaorun-afk.github.io/yibin-fiscal-tourism-dashboard/report/report.html |
+
 ## 项目结构
 
 ```
